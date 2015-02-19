@@ -1,0 +1,112 @@
+<html>
+	<head>
+
+		<style>
+
+			canvas{
+				left: 0px;
+				top: 0px;
+				position: absolute;
+			}
+			#view2{
+				z-index: 1;
+			}
+			#view1{
+				z-index: 0;
+			}
+			#controls{
+				width: 40%;
+				position: absolute;
+				bottom: 100%;
+				display: inline-block;
+			}
+			button{
+				width: 18%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div id="layers">
+			<canvas id="view2" width= "1280px" height ="600px"> Can't see me! </canvas>
+			<canvas id="view1" width= "1280px" height ="600px"> Can't see me! </canvas>
+			<canvas id="view3" width= "1280px" height ="600px"> Can't see me! </canvas>
+		</div>
+		<div id="controls">
+			<button id="buttonA">A</button>
+			<button id="buttonB">B</button>
+			<button id="buttonC">C</button>
+			<button id="buttonD">D</button>
+			<button id="buttonE">E</button>
+		</div>
+	</body>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="jquery-2.1.1.min.js"></script>
+<script src="queue.js"></script>
+<script src="util.js"></script>
+<script src="pathman.js"></script>
+<script src="script.js"></script>
+<script src="gfx.js"></script>
+<script>
+
+
+$( document ).ready(function() {
+
+	var sizeX = 100;
+	var sizeY = 100;
+
+	var canvas1 = document.getElementById('view1');
+	var ctx2 = canvas1.getContext('2d');
+
+	var canvas2 = document.getElementById('view2');
+	var ctx1 = canvas2.getContext('2d');
+
+	var canvas1 = document.getElementById('view3');
+	var ctx3 = canvas1.getContext('2d');
+
+	var w = canvas1.width/sizeX;
+	var h = canvas1.height/sizeY;
+
+	var grid = new Simulation(canvas1.width,  canvas1.height);
+	grid.ctx = ctx2;
+	//grid.init();
+	//var GFX = new GFX(w, h, grid, ctx);
+
+	ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+
+	grid.drawObstacles(ctx3);
+
+	setInterval(function(){
+		ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+		
+		ctx2.fillStyle="rgba(255, 255, 255, 0.04)";
+		ctx2.fillRect(0, 0, canvas1.width, canvas1.height);
+		grid.update();
+		//grid.drawLite(ctx2);
+		grid.draw(ctx1, null);
+		//GFX.draw();
+		}, 25);
+
+
+		//console.log(grid.arr.getName());
+
+
+
+
+	//ctx.fillRect(0, 0, w, h);
+
+
+
+
+
+
+});
+
+</script>
+
+
+
+</html>
