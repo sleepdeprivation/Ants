@@ -37,3 +37,34 @@ function XYArray(sizeX, sizeY, defaultV) {
 	}
 
 }
+
+
+/*
+	Generate ints, generate doubles
+*/
+
+function rng(min, max){
+	return Math.floor(Math.random() * (max - min) + min);
+}
+function dRNG(min, max){
+	return Math.random() * (max - min) + min;
+}
+
+/*
+	Need an ordered pair
+*/
+function Point(x, y){
+	this.x = x;
+	this.y = y;
+}
+
+
+/*
+	Food object we can place
+*/
+function Food(point){
+	this.location = point;
+	this.eaten = false;
+	this.size = 20;
+}
+
