@@ -33,6 +33,7 @@ function PathManager(sizeX, sizeY){
 
 	this.grid = new XYArray(sizeX, sizeY);
 
+	//thing is the source of a giant memory leak
 	this.list = [];
 
 	//big giant grid of nullpointers

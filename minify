@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p build
+uglifyjs *.js -o build/antsim.min.js

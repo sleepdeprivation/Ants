@@ -122,11 +122,11 @@ function Simulation(sizeX, sizeY){
 	}
 	
 	this.randomScentTrailDecay = function(){
-		//randomly destroy scent trails (1 in 8000 chance)
+		// randomly destroy scent trails (1 in 8000 chance)
 		var loc;
 		for(var ii = 0; ii < this.pathman.list.length; ii++){
 			loc = this.pathman.list[ii].location;
-			if(rng(0, 8000) == 0){
+			if(rng(0, 2000) == 0){
 				this.pathman.grid.arr[Math.floor(loc.x)][Math.floor(loc.y)] = null;
 			}
 		}

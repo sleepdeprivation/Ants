@@ -3,6 +3,7 @@ var GFX = function(data){
 
 	//console.log(data);
 
+	this.pathman = data.simulation.pathman;
 	this.map = data.simulation.map;
 	this.antlist = data.simulation.antlist;
 	this.food = data.simulation.food;
@@ -31,14 +32,21 @@ var GFX = function(data){
 	this.draw = function(){
 		var list = this.antlist.getQueue();
 
+/*
+
+	Not gonna try this again because it's either exceptionally wasteful or lying
+
 		if(this.ctx[1] != null){
 			this.ctx[1].fillStyle="rgba(255, 0, 0, 0.1)";
-			for(var ii = 0; ii < list.length; ii++){
-				if(!list[ii].foraging){
-					this.ctx[1].fillRect(list[ii].location.x, list[ii].location.y, 3, 3);
+			for(var ii = 0; ii < this.pathman.grid.dimX; ii++){
+				for(var kk = 0; kk < this.pathman.grid.dimY; kk++){
+					//if(this.pathman.grid.arr[ii] > 0){
+						//this.ctx[1].fillRect(ii, kk, 3, 3);
+					//}
 				}
 			}
 		}
+*/	
 
 		if(this.ctx[0] != null){
 			this.ctx[0].fillStyle="black";
@@ -53,4 +61,31 @@ var GFX = function(data){
 			this.ctx[0].fillRect(this.food[kk].location.x, this.food[kk].location.y, this.food[kk].size, this.food[kk].size);
 		}
 	}
+	
+	
+	/*
+		Blank the canvas out so we can draw anew
+	*/
+	this.whiteout = function(canvas1){
+		this.ctx[0].clearRect(0, 0, canvas1.width, canvas1.height);
+		this.ctx[0].fillStyle="rgba(255, 255, 255, 0.04)";
+		this.ctx[0].fillRect(0, 0, canvas1.width, canvas1.height);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -54,63 +54,52 @@
 
 //$( document ).ready(function() {
 
+
+
 	var sizeX = 100;
 	var sizeY = 100;
+	var gfx;
+	var grid;
+	var c1 = document.getElementById('view1');
+	var c2 = document.getElementById('view2');
+	var c3 = document.getElementById('view3');
 
-	var canvas1 = document.getElementById('view1');
-	var ctx2 = canvas1.getContext('2d');
+	function runSimulation(grid, gfx){
+		console.log("started");
+		//clock go
+		setInterval(function(){
+			gfx.whiteout(c1);
+			grid.update();
+			gfx.draw();
+			gfx.drawObstacles();
+			}, 25);
+	}
 
-	var canvas2 = document.getElementById('view2');
-	var ctx1 = canvas2.getContext('2d');
-
-	var canvas1 = document.getElementById('view3');
-	var ctx3 = canvas1.getContext('2d');
-
-	var w = canvas1.width/sizeX;
-	var h = canvas1.height/sizeY;
-
-	var grid = new Simulation(canvas1.width,  canvas1.height);
-	params = {
-				simulation : grid,
-				ctx1 : ctx1,
-				ctx2 : ctx2,
-				ctx3: ctx3
-			};
-	var gfx = new GFX(params);
-	grid.ctx = ctx2;
-	//grid.init();
-	//var GFX = new GFX(w, h, grid, ctx);
-
-	ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
-
-	gfx.drawObstacles(ctx3);
-
-	setInterval(function(){
+	function setUpGrid(canvas1, canvas2, canvas3, sx, sy){
+		var ctx2 = canvas1.getContext('2d');
+		var ctx1 = canvas2.getContext('2d');
+		var ctx3 = canvas1.getContext('2d');
+	
 		ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
-		
-		ctx2.fillStyle="rgba(255, 255, 255, 0.04)";
-		ctx2.fillRect(0, 0, canvas1.width, canvas1.height);
-		grid.update();
-		//grid.drawLite(ctx2);
-		gfx.draw(ctx1, null);
-		//GFX.draw();
-		}, 25);
+	
+		var w = canvas1.width/sx;
+		var h = canvas1.height/sy;
 
+		grid = new Simulation(canvas1.width,  canvas1.height);
+	
+		params = {
+					simulation : grid,
+					ctx1 : ctx1,
+					ctx2 : ctx2,
+					ctx3: ctx3
+				};
+		gfx = new GFX(params);
 
-		//console.log(grid.arr.getName());
+	}
+	setUpGrid(c1, c2, c3, sizeX, sizeY);
+	runSimulation(grid, gfx);
 
-
-
-
-	//ctx.fillRect(0, 0, w, h);
-
-
-
-
-
-
-//});
-
+	
 </script>
 
 
