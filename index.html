@@ -70,7 +70,13 @@
 	var h = canvas1.height/sizeY;
 
 	var grid = new Simulation(canvas1.width,  canvas1.height);
-	var gfx = new GFX({simulation : grid});
+	params = {
+				simulation : grid,
+				ctx1 : ctx1,
+				ctx2 : ctx2,
+				ctx3: ctx3
+			};
+	var gfx = new GFX(params);
 	grid.ctx = ctx2;
 	//grid.init();
 	//var GFX = new GFX(w, h, grid, ctx);
